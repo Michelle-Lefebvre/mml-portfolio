@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta -->
+    <title>Michelle M. Lefebvre , Senior Frontend Engineer</title>
+    <meta name="description"
+        content="Frontend Developer with 5 years of React and JavaScript experience, including enterprise products serving 22M+ users. Based in Montréal, QC.">
+    <meta name="author" content="Michelle M. Lefebvre">
+    <meta name="keywords"
+        content="Frontend Engineer, React, JavaScript, TypeScript, Montreal, Accessibility, WCAG, WebAR, Senior Developer">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f64266">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Michelle M. Lefebvre , Senior Frontend Engineer">
+    <meta property="og:description"
+        content="Senior Frontend Engineer with 7+ years building scalable React and JavaScript applications for 22M+ users. Montréal, QC.">
+    <meta property="og:locale" content="en_CA">
+    <meta property="og:site_name" content="Michelle M. Lefebvre Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Michelle M. Lefebvre , Senior Frontend Engineer">
+    <meta name="twitter:description"
+        content="Senior Frontend Engineer with 7+ years building scalable React and JavaScript applications for 22M+ users.">
+
+    <!-- Security Headers (also set these server-side) -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://michellelefebvre.dev/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ── Reset & Base ── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #f64266;
+            --accent-light: rgba(246, 66, 102, 0.08);
+            --accent-mid: rgba(246, 66, 102, 0.18);
+            --bg: #ffffff;
+            --bg-secondary: #f7f7f5;
+            --bg-tertiary: #f0f0ec;
+            --text-primary: #111110;
+            --text-secondary: #555550;
+            --text-tertiary: #999992;
+            --border: rgba(0, 0, 0, 0.1);
+            --border-mid: rgba(0, 0, 0, 0.18);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-pill: 100px;
+            --font-sans: 'DM Sans', system-ui, sans-serif;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --nav-height: 64px;
+            --max-w: 920px;
+            --transition: 0.2s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg: #111110;
+            --bg-secondary: #1a1a18;
+            --bg-tertiary: #222220;
+            --text-primary: #f0f0ec;
+            --text-secondary: #a0a09a;
+            --text-tertiary: #666660;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-mid: rgba(255, 255, 255, 0.18);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #111110;
+                --bg-secondary: #1a1a18;
+                --bg-tertiary: #222220;
+                --text-primary: #f0f0ec;
+                --text-secondary: #a0a09a;
+                --text-tertiary: #666660;
+                --border: rgba(255, 255, 255, 0.1);
+                --border-mid: rgba(255, 255, 255, 0.18);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── Skip link ── */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            z-index: 9999;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: top 0.2s;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        /* ── Focus styles ── */
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 3px;
+        }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            background: var(--bg);
+            border-bottom: 0.5px solid var(--border);
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .nav-logo {
+            height: 36px;
+            width: 36px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-logo-fallback {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            order: 3;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            order: 2;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            transition: color var(--transition);
+            padding: 0.25rem 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform var(--transition);
+            transform-origin: left;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 0.5px solid var(--border-mid);
+            border-radius: var(--radius-sm);
+            padding: 6px 10px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 18px;
+            line-height: 1;
+            transition: background var(--transition);
+        }
+
+        .nav-toggle:hover {
+            background: var(--bg-secondary);
+        }
+
+        .nav-toggle[aria-expanded="true"] .hamburger-open {
+            display: none;
+        }
+
+        .nav-toggle[aria-expanded="false"] .hamburger-close {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .nav-toggle {
+                display: flex;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: var(--bg);
+                border-bottom: 0.5px solid var(--border);
+                flex-direction: column;
+                gap: 0;
+                padding: 0.5rem 0;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.85rem 2rem;
+                font-size: 16px;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+        }
+
+        /* ── Layout ── */
+        main {
+            padding-top: var(--nav-height);
+        }
+
+        .container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 0.5px solid var(--border);
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        /* ── Section labels ── */
+        .section-label {
+            font-size: 13px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        /* ── Open to work badge ── */
+        .open-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border: 0.5px solid var(--border-mid);
+            border-radius: var(--radius-pill);
+            padding: 5px 14px;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            transition: border-color var(--transition), color var(--transition), background var(--transition);
+        }
+
+        .open-badge:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .open-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+            }
+
+            50% {
+                box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.08);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .open-badge-dot {
+                animation: none;
+            }
+        }
+
+        .hero-open {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding-top: 7rem;
+            padding-bottom: 7rem;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-photo-wrap {
+            width: 260px;
+            height: 300px;
+            flex-shrink: 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        @media (max-width: 720px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-photo-wrap {
+                width: 120px;
+                height: 140px;
+                order: -1;
+                border-radius: var(--radius-md);
+            }
+        }
+
+        .hero-eyebrow {
+            font-size: 13px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .hero-name {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.0;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* ── Buttons ── */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-pill);
+            font-size: 14px;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.87;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: var(--text-primary);
+            border: 0.5px solid var(--border-mid);
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-pill);
+            font-size: 14px;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background var(--transition), border-color var(--transition), transform var(--transition);
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-secondary);
+            border-color: var(--border-mid);
+            transform: translateY(-1px);
+        }
+
+        /* ── About ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-highlight {
+            font-family: var(--font-serif);
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.55;
+            border-left: 2px solid var(--accent);
+            padding-left: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-story {
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--text-secondary);
+        }
+
+        .about-story p {
+            margin-bottom: 1.1rem;
+        }
+
+        .about-story p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-stats {
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .stat-row {
+            padding: 1rem 1.25rem;
+            background: var(--bg);
+            border-bottom: 0.5px solid var(--border);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-num {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--accent);
+            line-height: 1.1;
+        }
+
+        .stat-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 3px;
+        }
+
+        /* ── Cert badge ── */
+        .cert-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+            padding: 0.85rem 1rem;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            text-decoration: none;
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .cert-badge:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .cert-badge-icon {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            border-radius: 6px;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .cert-badge-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-badge-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .cert-badge-sub {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        @media (max-width: 720px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .about-stats-col {
+                order: -1;
+            }
+        }
+
+        /* ── Experience timeline ── */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 0.5px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -1.5rem;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1.5px solid var(--border-mid);
+            transform: translateX(-3.5px);
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .timeline-role {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .timeline-company {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .timeline-date {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-left: auto;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 0.85rem;
+        }
+
+        /* ── Projects ── */
+        .projects-section {
+            max-width: 100%;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .projects-section .section-label,
+        .projects-section .section-title {
+            max-width: var(--max-w);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .projects-list {
+            max-width: var(--max-w);
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--bg);
+            transition: border-color var(--transition), transform var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-mid);
+            transform: translateY(-2px);
+        }
+
+        .project-img-wrap {
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 340px;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            max-height: 480px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            min-height: 300px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-img-placeholder span {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .project-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .project-company {
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+        }
+
+        .project-sep {
+            color: var(--border-mid);
+            font-size: 13px;
+        }
+
+        .project-type {
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            line-height: 1.35;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tag {
+            font-size: 13px;
+            padding: 3px 10px;
+            border-radius: var(--radius-pill);
+            border: 0.5px solid var(--border);
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            white-space: nowrap;
+            list-style: none;
+            display: inline-block;
+        }
+
+        .project-link {
+            font-size: 13px;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap var(--transition);
+        }
+
+        .project-link:hover {
+            gap: 8px;
+        }
+
+        .project-qr-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.85rem 1rem;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+        }
+
+        .project-qr-wrap {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .project-qr {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        .project-qr-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .project-qr-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .project-qr-sub {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            line-height: 1.5;
+        }
+
+        .project-links-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 640px) {
+            .project-img {
+                max-height: none;
+                width: 100%;
+                height: auto;
+            }
+
+            .project-img-placeholder {
+                min-height: 200px;
+            }
+
+            .project-body {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ── Skills ── */
+        /* ── Skills timeline ── */
+        .skills-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skills-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 0.5px;
+            background: var(--border);
+        }
+
+        .skills-block {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .skills-block:last-child {
+            padding-bottom: 0;
+        }
+
+        .skills-block-dot {
+            position: absolute;
+            left: -1.5rem;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1.5px solid var(--border-mid);
+            transform: translateX(-3.5px);
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .skills-block:hover .skills-block-dot {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .skills-block-header {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-block-role {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .skills-block-company {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .skills-block-date {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-left: auto;
+        }
+
+        .skills-block-note {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 0.85rem;
+            font-style: italic;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skills-tag {
+            font-size: 13px;
+            padding: 4px 11px;
+            border-radius: var(--radius-pill);
+            border: 0.5px solid var(--border);
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            white-space: nowrap;
+        }
+
+        .skills-tag-highlight {
+            border-color: var(--accent-mid);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        /* ── Contact ── */
+        .contact-inner {
+            max-width: 540px;
+        }
+
+        .contact-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .email-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .email-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .email-link {
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .email-link:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.65rem 1.25rem;
+            border: 0.5px solid var(--border-mid);
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .social-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 0.5px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-main {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 0.35rem;
+        }
+
+        .footer-ai {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-ai a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer-ai a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Theme toggle ── */
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border: 0.5px solid var(--border-mid);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: border-color var(--transition), color var(--transition), background var(--transition);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .theme-toggle svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-sun {
+            display: none;
+        }
+
+        .icon-moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .icon-sun {
+            display: block;
+        }
+
+        [data-theme="dark"] .icon-moon {
+            display: none;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) .icon-sun {
+                display: block;
+            }
+
+            :root:not([data-theme="light"]) .icon-moon {
+                display: none;
+            }
+        }
+
+        /* ── Scroll down button ── */
+        .scroll-down {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+            width: 40px;
+            height: 40px;
+            border: 0.5px solid var(--border-mid);
+            border-radius: 50%;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: border-color var(--transition), color var(--transition), transform var(--transition);
+            animation: bounce 2.5s ease infinite;
+        }
+
+        .scroll-down:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            animation: none;
+            transform: translateY(3px);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-down {
+                animation: none;
+            }
+        }
+
+        /* ── Print ── */
+        @media print {
+
+            .nav,
+            .hero-cta,
+            .social-links {
+                display: none;
+            }
+
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                padding: 1rem 0;
+            }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <header role="banner">
+        <nav class="nav" aria-label="Main navigation">
+            <a href="#main-content" aria-label="MML Designs - go to top">
+                <img class="nav-logo" src="MMLlogo.png" alt="MML Designs logo"
+                    onerror="this.outerHTML='<span class=nav-logo-fallback>MML</span>'">
+            </a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode"
+                    title="Toggle light/dark mode">
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                </button>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu"
+                    aria-label="Toggle navigation menu">
+                    <span class="hamburger-open" aria-hidden="true">&#9776;</span>
+                    <span class="hamburger-close" aria-hidden="true">&#x2715;</span>
+                </button>
+            </div>
+            <ul class="nav-links" id="nav-menu" role="list">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+
+        <!-- Hero -->
+        <section class="container hero" aria-labelledby="hero-heading">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <a href="#contact" class="open-badge" aria-label="Open to work - jump to contact section">
+                        <span class="open-badge-dot" aria-hidden="true"></span>
+                        Available for new opportunities
+                    </a>
+                    <span class="hero-eyebrow" aria-hidden="true">Senior Frontend Engineer</span>
+                    <h1 id="hero-heading" class="hero-name">Michelle M.<br>Lefebvre</h1>
+                    <p class="hero-title">10+ years in technical roles, 5 years frontend. Enterprise, agency, and
+                        consulting.
+                        Products used by 22M+ people. Based in Montréal, QC.</p>
+                    <p class="hero-open">I'm looking for my next great team. If you care about what you ship and how you
+                        build it,
+                        let's talk.</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn-primary">View my work</a>
+                        <a href="#contact" class="btn-ghost">Get in touch</a>
+                        <a href="Michelle_Lefebvre_Resume.pdf" class="btn-ghost" download
+                            aria-label="Download Michelle Lefebvre resume PDF">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false" style="margin-right:6px">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            Resume
+                        </a>
+                    </div>
+                    <a href="#about" class="scroll-down" aria-label="Scroll down to about section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"
+                            focusable="false">
+                            <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="hero-photo-wrap">
+                    <img class="hero-photo" src="MML2026-optimized.png" alt="Michelle Lefebvre" width="260" height="300"
+                        fetchpriority="high">
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" aria-hidden="true">
+
+        <!-- About -->
+        <section class="container" id="about" aria-labelledby="about-heading">
+            <span class="section-label" aria-hidden="true">About</span>
+            <h2 id="about-heading" class="section-title" style="margin-bottom: 2.5rem;">A builder by nature</h2>
+            <div class="about-grid">
+                <div>
+                    <blockquote class="about-highlight">
+                        "You'll never know if you like programming unless you try it." When I realized I could build
+                        something
+                        beautiful in a day, I've been hooked ever since.
+                    </blockquote>
+                    <div class="about-story">
+                        <p>I spent over a decade as a CAD Manager and Architectural &amp; Engineering Technologist.
+                            Overseeing
+                            complex technical solutions and bridging the gap between technical teams and non-technical
+                            stakeholders.
+                            That foundation of precision, documentation, and cross-disciplinary thinking still shapes
+                            how I approach
+                            every codebase.</p>
+                        <p>My path into tech was when I attended a tech meetup. It was a panel of 5 ladies who had all
+                            taught
+                            themselves to code and made career changes. I thought about it for 2 days and decided to try
+                            it. HTML done
+                            in a day. Day 2 was CSS. When I got to colour I lost 3 days to building colour palettes.
+                            Probably stems
+                            from my interior design background.</p>
+                        <p>When I discovered that you could build a website in 1-2 days I was hooked. In architecture,
+                            you draw for
+                            1-3 years before ground breaks. In web development, you can ship something beautiful in a
+                            day.</p>
+                        <p>Three months of self-study later, I was building websites for local small businesses. Larger
+                            clients
+                            followed. That's where I started working with backend developers and the need to understand
+                            the full stack
+                            became clear. So I returned to school for an intensive one-year full-stack bootcamp at John
+                            Abbott
+                            College.</p>
+                        <p>Seven years on, I bring the same instinct I had on day one: curiosity first, craft always. I
+                            recently
+                            completed the Google AI Professional Certificate and am actively exploring how AI tooling is
+                            reshaping the
+                            way we build.</p>
+                    </div>
+                </div>
+                <aside class="about-stats-col" aria-label="Career highlights">
+                    <dl class="about-stats">
+                        <div class="stat-row">
+                            <dt class="stat-desc">Years of frontend experience</dt>
+                            <dd class="stat-num">7+</dd>
+                        </div>
+                        <div class="stat-row">
+                            <dt class="stat-desc">Users served at enterprise scale</dt>
+                            <dd class="stat-num">22M+</dd>
+                        </div>
+                        <div class="stat-row">
+                            <dt class="stat-desc">React &amp; JavaScript</dt>
+                            <dd class="stat-num">5 yrs</dd>
+                        </div>
+                        <div class="stat-row">
+                            <dt class="stat-desc">TypeScript</dt>
+                            <dd class="stat-num">2 yrs</dd>
+                        </div>
+                        <div class="stat-row">
+                            <dt class="stat-desc">JAMstack Worldwide Hackathon</dt>
+                            <dd class="stat-num">3rd</dd>
+                        </div>
+                    </dl>
+                    <a href="https://grow.google/certificates/ai-essentials/" class="cert-badge"
+                        rel="noopener noreferrer" target="_blank"
+                        aria-label="Google AI Professional Certificate (opens in new tab)">
+                        <span class="cert-badge-icon" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        </span>
+                        <span class="cert-badge-text">
+                            <span class="cert-badge-title">Google AI Professional Certificate</span>
+                            <span class="cert-badge-sub">Completed 2026</span>
+                        </span>
+                    </a>
+                </aside>
+            </div>
+        </section>
+
+        <hr class="divider" aria-hidden="true">
+
+        <!-- Experience -->
+        <section class="container" id="experience" aria-labelledby="experience-heading">
+            <span class="section-label" aria-hidden="true">Experience &amp; Skills</span>
+            <h2 id="experience-heading" class="section-title">Where I've worked</h2>
+            <div class="timeline" role="list">
+
+                <div class="timeline-item" role="listitem">
+                    <span class="timeline-dot" aria-hidden="true"></span>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Associate Software Developer</span>
+                        <span class="timeline-company">HMM</span>
+                        <span class="timeline-date">Oct 2022 - Oct 2024</span>
+                    </div>
+                    <p class="timeline-desc">Built and maintained React components in an enterprise micro-frontend
+                        architecture
+                        serving 22M+ users, using TypeScript and Material UI. Worked closely with the accessibility team
+                        to bring
+                        components up to WCAG 2.1 standards using ARIA patterns and Axe-core audits. Collaborated with
+                        UI/UX
+                        designers on mobile-responsive implementations across a large codebase.</p>
+                    <div class="skills-tags" aria-label="Skills used at HMM">
+                        <span class="skills-tag skills-tag-highlight">React</span>
+                        <span class="skills-tag skills-tag-highlight">TypeScript</span>
+                        <span class="skills-tag skills-tag-highlight">JavaScript</span>
+                        <span class="skills-tag skills-tag-highlight">Accessibility / A11Y</span>
+                        <span class="skills-tag skills-tag-highlight">WCAG 2.1</span>
+                        <span class="skills-tag skills-tag-highlight">Material UI</span>
+                        <span class="skills-tag skills-tag-highlight">Styled Components</span>
+                        <span class="skills-tag skills-tag-highlight">Jest</span>
+                        <span class="skills-tag skills-tag-highlight">React Testing Library</span>
+                        <span class="skills-tag skills-tag-highlight">Git</span>
+                        <span class="skills-tag skills-tag-highlight">Jira</span>
+                        <span class="skills-tag skills-tag-highlight">Scrum / Agile</span>
+                        <span class="skills-tag skills-tag-highlight">OpenVPN</span>
+                        <span class="skills-tag">Storybook</span>
+                        <span class="skills-tag">Node.js</span>
+                        <span class="skills-tag">Documentation</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item" role="listitem">
+                    <span class="timeline-dot" aria-hidden="true"></span>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Frontend Developer</span>
+                        <span class="timeline-company">Valtech</span>
+                        <span class="timeline-date">Nov 2020 - Mar 2022</span>
+                    </div>
+                    <p class="timeline-desc">Built frontend solutions for multiple clients using React, Vue, and
+                        Contentful CMS.
+                        Developed a custom approach for overlaying responsive HTML/CSS interfaces inside WebAR
+                        environments (8th
+                        Wall, PlayCanvas), so users could check out without leaving the AR experience. Also taught
+                        frontend
+                        fundamentals as an instructor at TechGirl workshops in NYC, Toronto, and Chicago.</p>
+                    <div class="skills-tags" aria-label="Skills used at Valtech">
+                        <span class="skills-tag skills-tag-highlight">JavaScript</span>
+                        <span class="skills-tag skills-tag-highlight">HTML5</span>
+                        <span class="skills-tag skills-tag-highlight">CSS3</span>
+                        <span class="skills-tag skills-tag-highlight">GitHub</span>
+                        <span class="skills-tag skills-tag-highlight">React</span>
+                        <span class="skills-tag skills-tag-highlight">Vue</span>
+                        <span class="skills-tag skills-tag-highlight">Angular</span>
+                        <span class="skills-tag skills-tag-highlight">8th Wall</span>
+                        <span class="skills-tag skills-tag-highlight">PlayCanvas</span>
+                        <span class="skills-tag">TypeScript</span>
+                        <span class="skills-tag">Sass</span>
+                        <span class="skills-tag">Bootstrap</span>
+                        <span class="skills-tag">Material UI</span>
+                        <span class="skills-tag">Contentful CMS</span>
+                        <span class="skills-tag">Stripe</span>
+                        <span class="skills-tag">Node.js</span>
+                        <span class="skills-tag">Yarn</span>
+                        <span class="skills-tag">Docker</span>
+                        <span class="skills-tag">Netlify</span>
+                        <span class="skills-tag">SourceTree</span>
+                        <span class="skills-tag">GDPR</span>
+                        <span class="skills-tag">Accessibility</span>
+                        <span class="skills-tag">Kanban</span>
+                        <span class="skills-tag">Client training</span>
+                        <span class="skills-tag">Technical documentation</span>
+                        <span class="skills-tag">Stakeholder communication</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item" role="listitem">
+                    <span class="timeline-dot" aria-hidden="true"></span>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Owner &amp; Frontend Consultant</span>
+                        <span class="timeline-company">MML Designs</span>
+                        <span class="timeline-date">Aug 2017 - Nov 2020</span>
+                    </div>
+                    <p class="timeline-desc">Worked with clients across retail and education, including building shopper
+                        profile
+                        and payment interfaces for Reitmans, integrated with backend APIs. Built responsive web apps and
+                        digital
+                        branding from the ground up.</p>
+                    <div class="skills-tags" aria-label="Skills used at MML Designs">
+                        <span class="skills-tag skills-tag-highlight">HTML5</span>
+                        <span class="skills-tag skills-tag-highlight">CSS3</span>
+                        <span class="skills-tag skills-tag-highlight">JavaScript</span>
+                        <span class="skills-tag skills-tag-highlight">React</span>
+                        <span class="skills-tag skills-tag-highlight">GitHub</span>
+                        <span class="skills-tag skills-tag-highlight">Bootstrap</span>
+                        <span class="skills-tag skills-tag-highlight">Client coordination</span>
+                        <span class="skills-tag">Sass</span>
+                        <span class="skills-tag">Adobe XD</span>
+                        <span class="skills-tag">Figma</span>
+                        <span class="skills-tag">InVision</span>
+                        <span class="skills-tag">Netlify</span>
+                        <span class="skills-tag">FileZilla</span>
+                        <span class="skills-tag">Project management</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item" role="listitem">
+                    <span class="timeline-dot" aria-hidden="true"></span>
+                    <div class="timeline-header">
+                        <span class="timeline-role">Full-Stack Bootcamp</span>
+                        <span class="timeline-company">John Abbott College</span>
+                        <span class="timeline-date">2020</span>
+                    </div>
+                    <p class="timeline-desc">One-year intensive full-stack program. Studied back-end development,
+                        databases, and
+                        server-side frameworks alongside frontend fundamentals.</p>
+                    <div class="skills-tags" aria-label="Skills studied at John Abbott College">
+                        <span class="skills-tag">PHP</span>
+                        <span class="skills-tag">Twig</span>
+                        <span class="skills-tag">Slim Framework</span>
+                        <span class="skills-tag">MySQL</span>
+                        <span class="skills-tag">SQL</span>
+                        <span class="skills-tag">C#</span>
+                        <span class="skills-tag">WPF</span>
+                        <span class="skills-tag">Java</span>
+                        <span class="skills-tag">OOP</span>
+                        <span class="skills-tag">ASP.NET Core</span>
+                        <span class="skills-tag">Razor</span>
+                        <span class="skills-tag">Entity Framework Core</span>
+                        <span class="skills-tag">Visual Studio</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item" role="listitem">
+                    <span class="timeline-dot" aria-hidden="true"></span>
+                    <div class="timeline-header">
+                        <span class="timeline-role">CAD Manager &amp; A/E Technologist</span>
+                        <span class="timeline-company">Various firms</span>
+                        <span class="timeline-date">2005 - 2017</span>
+                    </div>
+                    <p class="timeline-desc">Over a decade managing drafting standards, technical workflows, and project
+                        delivery
+                        in architectural and engineering environments. Working across disciplines and translating
+                        technical detail
+                        for non-technical stakeholders - that skillset transfers directly to how I work in frontend
+                        teams today.</p>
+                    <div class="skills-tags" aria-label="Skills used as CAD Manager">
+                        <span class="skills-tag skills-tag-highlight">AutoCAD</span>
+                        <span class="skills-tag skills-tag-highlight">2D Models</span>
+                        <span class="skills-tag skills-tag-highlight">Construction Documents</span>
+                        <span class="skills-tag">3D Models</span>
+                        <span class="skills-tag">Revit</span>
+                        <span class="skills-tag">Photoshop</span>
+                    </div>
+                </div>
+        </section>
+
+        <hr class="divider" aria-hidden="true">
+
+        <!-- Projects -->
+        <section class="container projects-section" id="projects" aria-labelledby="projects-heading">
+            <span class="section-label" aria-hidden="true">Projects</span>
+            <h2 id="projects-heading" class="section-title">Selected work</h2>
+            <div class="projects-list">
+
+                <!-- Project 1 -->
+                <article class="project-card" aria-labelledby="proj1-title">
+                    <div class="project-img-wrap">
+                        <img class="project-img" src="Collage-AR.png"
+                            alt="Eight screenshots of the WebAR e-bike experience showing the bike placed in front of the Musée d'art contemporain de Montréal, interactive hotspots, colour customization, social sharing, test ride booking, add to cart, and Apple Pay checkout — all within the AR environment"
+                            loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-company">Valtech</span>
+                            <span class="project-sep" aria-hidden="true">·</span>
+                            <span class="project-type">WebAR</span>
+                        </div>
+                        <h3 id="proj1-title" class="project-title">AR Commerce: Immersive Checkout Architecture</h3>
+                        <p class="project-desc">At the time, injecting HTML, CSS, and a payment flow directly into a
+                            WebAR
+                            environment had never been done. Built a custom method to make it work inside 8th Wall and
+                            PlayCanvas —
+                            users could browse, customize, and pay without ever leaving the AR experience.</p>
+                        <ul class="project-tags" aria-label="Technologies used">
+                            <li class="tag">8th Wall</li>
+                            <li class="tag">PlayCanvas</li>
+                            <li class="tag">JavaScript</li>
+                            <li class="tag">HTML5</li>
+                            <li class="tag">CSS3</li>
+                            <li class="tag">Apple Pay</li>
+                        </ul>
+                        <div class="project-qr-row">
+                            <div class="project-qr-wrap">
+                                <img src="e-bikeQRcode.png" alt="QR code to launch the AR e-bike experience on mobile"
+                                    class="project-qr" width="80" height="80">
+                            </div>
+                            <div class="project-qr-text">
+                                <span class="project-qr-label">Scan to experience on mobile</span>
+                                <span class="project-qr-sub">This is a WebAR experience — point your phone camera at the
+                                    code to launch
+                                    it.</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card" aria-labelledby="proj2-title">
+                    <div class="project-img-wrap">
+                        <img class="project-img" src="collage-Jitters.png"
+                            alt="Screenshots from the Jitters coffee shop app showing the homepage, admin interface, user list, registration and login forms, error pages, and menu with cart functionality"
+                            loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-company">John Abbott College</span>
+                            <span class="project-sep" aria-hidden="true">·</span>
+                            <span class="project-type">Full-stack</span>
+                        </div>
+                        <h3 id="proj2-title" class="project-title">Jitters: Full-Stack Coffee Shop App</h3>
+                        <p class="project-desc">Built with a classmate during bootcamp. Customers can order ahead, earn
+                            rewards, and
+                            manage their account. Admins get a full dashboard to manage users, orders, and menu items.
+                            Includes
+                            dual-role auth, global error handling, W3C-validated templates across 39 Twig files, and a
+                            custom database
+                            schema.</p>
+                        <ul class="project-tags" aria-label="Technologies used">
+                            <li class="tag">PHP</li>
+                            <li class="tag">Twig</li>
+                            <li class="tag">Slim Framework</li>
+                            <li class="tag">Bootstrap</li>
+                            <li class="tag">MySQL</li>
+                            <li class="tag">HTML</li>
+                            <li class="tag">CSS</li>
+                        </ul>
+                        <div class="project-links-row">
+                            <a href="JittersPresentation.pdf" class="project-link"
+                                aria-label="View Jitters project presentation PDF" target="_blank"
+                                rel="noopener noreferrer">View presentation <span aria-hidden="true">→</span></a>
+                            <a href="https://github.com/Michelle-Lefebvre/projectJitters" class="project-link"
+                                aria-label="View Jitters source code on GitHub (opens in new tab)"
+                                rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card" aria-labelledby="proj3-title">
+                    <div class="project-img-wrap"><img class="project-img" src="Collage_MadScience.jpg"
+                            alt="Six pages of the Mad Science bilingual website showing bold blue, green and purple branding with science-themed illustrations across Dutch and English layouts"
+                            loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-company">MML Designs</span>
+                            <span class="project-sep" aria-hidden="true">·</span>
+                            <span class="project-type">Bilingual</span>
+                        </div>
+                        <h3 id="proj3-title" class="project-title">Mad Science: International Frontend Rollout</h3>
+                        <p class="project-desc">Lead frontend dev on a bilingual Dutch/English site for an international
+                            franchise.
+                            Translated design mockups into code and wrote CMS onboarding documentation to help the
+                            international team
+                            manage the site going forward.</p>
+                        <ul class="project-tags" aria-label="Technologies used">
+                            <li class="tag">HTML5</li>
+                            <li class="tag">Sass</li>
+                            <li class="tag">Gulp</li>
+                            <li class="tag">Bootstrap</li>
+                            <li class="tag">JavaScript</li>
+                            <li class="tag">CSS3</li>
+                        </ul>
+                        <a href="#" class="project-link"
+                            aria-label="View Mad Science staging site (opens external link)">View
+                            staging site <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <hr class="divider" aria-hidden="true">
+
+        <!-- Contact -->
+        <section class="container" id="contact" aria-labelledby="contact-heading">
+            <span class="section-label" aria-hidden="true">Contact</span>
+            <div class="contact-inner">
+                <h2 id="contact-heading" class="section-title">Let's work together</h2>
+                <p class="contact-desc">I'm open to senior frontend and software engineer roles. If you're building
+                    something
+                    you care about and need someone who takes the work seriously, I'd love to hear from you.</p>
+                <div class="email-row">
+                    <span class="email-dot" aria-hidden="true"></span>
+                    <span id="email-link-wrap"></span>
+                </div>
+                <nav class="social-links" aria-label="Social media and professional profiles">
+                    <a href="https://www.linkedin.com/in/michellelefebvre1/" class="social-link"
+                        rel="noopener noreferrer" target="_blank" aria-label="LinkedIn profile (opens in new tab)">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                            focusable="false">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/Michelle-Lefebvre" class="social-link" rel="noopener noreferrer"
+                        target="_blank" aria-label="GitHub profile (opens in new tab)">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                            focusable="false">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                        GitHub
+                    </a>
+                </nav>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p class="footer-main">Designed &amp; built by Michelle M. Lefebvre &middot; Montréal, QC</p>
+        <p class="footer-ai">This portfolio was designed with the assistance of <a href="https://claude.ai"
+                rel="noopener noreferrer" target="_blank">Claude AI</a> by Anthropic</p>
+    </footer>
+
+    <script>
+        // -- Email obfuscation: assembled at runtime, hidden from scrapers --
+        (function () {
+            var u = 'michelle-m-lefebvre';
+            var d = 'outlook' + '.' + 'com';
+            var e = u + '@' + d;
+            var wrap = document.getElementById('email-link-wrap');
+            if (wrap) {
+                var a = document.createElement('a');
+                a.href = 'mai' + 'lto:' + e;
+                a.className = 'email-link';
+                a.textContent = e;
+                wrap.appendChild(a);
+            }
+        })();
+
+        // -- Theme toggle --
+        var root = document.documentElement;
+        var themeBtn = document.getElementById('theme-toggle');
+
+        function applyTheme(theme) {
+            root.setAttribute('data-theme', theme);
+            try { localStorage.setItem('theme', theme); } catch (e) { }
+            if (themeBtn) {
+                themeBtn.setAttribute(
+                    'aria-label',
+                    theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+                );
+            }
+        }
+
+        // On load: saved pref > system pref > light
+        (function () {
+            var saved;
+            try { saved = localStorage.getItem('theme'); } catch (e) { }
+            var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(saved || (systemDark ? 'dark' : 'light'));
+        })();
+
+        if (themeBtn) {
+            themeBtn.addEventListener('click', function () {
+                var current = root.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        // -- Nav toggle --
+        var navToggle = document.querySelector('.nav-toggle');
+        var navMenu = document.querySelector('.nav-links');
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', function () {
+                var expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!expanded));
+                navMenu.classList.toggle('is-open', !expanded);
+            });
+            navMenu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navMenu.classList.remove('is-open');
+                });
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && navMenu.classList.contains('is-open')) {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navMenu.classList.remove('is-open');
+                    navToggle.focus();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -44,6 +44,16 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://michellelefebvre.dev/">
 
+    <!-- Theme init: runs before paint to prevent flash -->
+    <script>
+        (function () {
+            var saved;
+            try { saved = localStorage.getItem('theme'); } catch (e) { }
+            var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', saved || (systemDark ? 'dark' : 'light'));
+        })();
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -491,7 +501,7 @@
                             <li class="tag">CSS</li>
                         </ul>
                         <div class="project-links-row">
-                            <a href="JittersPresentation.pdf" class="project-link"
+                            <a href="images/JittersPresentation.pdf" class="project-link"
                                 aria-label="View Jitters project presentation PDF" target="_blank"
                                 rel="noopener noreferrer">View presentation <span aria-hidden="true">→</span></a>
                             <a href="https://github.com/Michelle-Lefebvre/projectJitters" class="project-link"
@@ -527,8 +537,9 @@
                             <li class="tag">JavaScript</li>
                             <li class="tag">CSS3</li>
                         </ul>
-                        <a href="#" class="project-link"
-                            aria-label="View Mad Science staging site (opens external link)">View
+                        <a href="https://madsciencegroup.github.io/MSG_National_NL/public/" class="project-link"
+                            aria-label="View Mad Science staging site (opens external link)" rel="noopener noreferrer"
+                            target="_blank">View
                             staging site <span aria-hidden="true">→</span></a>
                     </div>
                 </article>
@@ -580,8 +591,7 @@
         <p class="footer-ai">This portfolio was designed with the assistance of <a href="https://claude.ai"
                 rel="noopener noreferrer" target="_blank">Claude AI</a> by Anthropic</p>
     </footer>
-
-
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -728,7 +728,7 @@ main {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  min-height: 340px;
+  /* min-height: 340px; */
 }
 
 .project-img {

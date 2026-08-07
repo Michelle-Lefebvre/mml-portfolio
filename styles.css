@@ -112,7 +112,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 10%;
   background: var(--bg-nav);
   border-bottom: 0.5px solid var(--border);
   z-index: 100;

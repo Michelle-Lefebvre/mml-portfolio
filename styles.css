@@ -538,6 +538,40 @@ main {
   line-height: 1.1;
 }
 
+@property --stat-count {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes stat-count-up {
+  from {
+    --stat-count: 0;
+  }
+
+  to {
+    --stat-count: var(--stat-target, 0);
+  }
+}
+
+.about-stats.is-counting .stat-num:not(.stat-num--static) {
+  font-size: 0;
+}
+
+.about-stats.is-counting .stat-num:not(.stat-num--static)::before {
+  counter-reset: stat-count var(--stat-count);
+  content: counter(stat-count) attr(data-suffix);
+  font-size: 2rem;
+  animation: stat-count-up 1.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-stats.is-counting .stat-num:not(.stat-num--static)::before {
+    animation: none;
+    --stat-count: var(--stat-target, 0);
+  }
+}
+
 .stat-desc {
   font-size: 13px;
   color: var(--text-secondary);

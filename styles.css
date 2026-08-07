@@ -714,12 +714,32 @@ main {
   background: var(--bg);
   transition:
     border-color var(--transition),
-    transform var(--transition);
+    translate var(--transition);
 }
 
 .project-card:hover {
   border-color: var(--border-mid);
-  transform: translateY(-2px);
+  translate: 0 -2px;
+}
+
+@supports (animation-timeline: view()) {
+  @keyframes project-card-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .project-card {
+    animation: project-card-in 0.6s ease both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
 }
 
 .project-img-wrap {
@@ -736,6 +756,11 @@ main {
   height: 100%;
   object-fit: contain;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.045);
 }
 
 .project-img-placeholder {

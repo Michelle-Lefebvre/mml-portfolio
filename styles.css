@@ -298,7 +298,6 @@ main {
   border: 0.5px solid var(--border-mid);
   border-radius: var(--radius-pill);
   padding: 5px 14px;
-  margin-bottom: 1.5rem;
   text-decoration: none;
   transition:
     border-color var(--transition),
@@ -340,6 +339,49 @@ main {
   }
 }
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.rotate-border {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 2px; /* border thickness */
+
+  background: conic-gradient(
+    from var(--angle),
+    transparent,
+    #f64266,
+    #dad4c4,
+    transparent
+  );
+
+  animation: spin 3s linear infinite;
+}
+
+.content {
+  /* width: 100%;
+  height: 100%; */
+  background: #fff; /* Match your background */
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: white;
+  border-radius: 8px; /* Slightly smaller than parent to look even */
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
 .hero-open {
   font-size: 15px;
   color: var(--text-secondary);
@@ -368,6 +410,25 @@ main {
   flex-shrink: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
+  animation: hero-photo-in 0.9s ease both;
+}
+
+@keyframes hero-photo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo-wrap {
+    animation: none;
+  }
 }
 
 .hero-photo {
@@ -397,7 +458,7 @@ main {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 1.2rem;
+  margin: 1.2rem 0;
   display: block;
 }
 

@@ -364,6 +364,11 @@ main {
   animation: spin 3s linear infinite;
 }
 
+.rotate-border:hover {
+  animation-play-state: paused;
+  background: none;
+}
+
 .content {
   /* width: 100%;
   height: 100%; */
